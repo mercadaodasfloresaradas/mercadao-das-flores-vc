@@ -1,0 +1,47 @@
+@use "./Assets/SCSS/variables.scss";
+
+@font-face {
+    font-family: "Gabriola";
+    src: url("./Fonts/Gabriola.ttf");
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-family: "Gabriola";
+    background-image: url("/public/main/Patern.jpeg");
+    background-size: cover;
+}
+
+* {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar-track {
+    border: 1px solid variables.$black;
+    background-color: variables.$white;
+}
+
+*::-webkit-scrollbar {
+    width: 2rem;
+    background-color: variables.$white;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: variables.$main-color;
+}
+
+a,
+a:visited {
+    color: inherit;
+}

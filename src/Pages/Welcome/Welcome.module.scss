@@ -1,0 +1,77 @@
+.container {
+        font-size: 1rem;
+}
+
+.flower {
+        position: absolute;
+        width: 30rem;
+        height: 30rem;
+
+        &-lt {
+                top: 0;
+                left: 0;
+        }
+
+        &-rt {
+                top: 0;
+                right: 0;
+        }
+
+        &-lb {
+                bottom: 0;
+                left: 0;
+
+                svg {
+                        transform: translate(0, 1rem);
+                }
+        }
+
+        &-rb {
+                bottom: 0;
+                right: 0;
+
+                svg {
+                        transform: translate(0, 1rem);
+                }
+        }
+}
+
+.content {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+.title {
+        font-size: 4rem;
+        font-weight: 100;
+}
+
+.actions {
+        display: flex;
+        gap: 0.5rem;
+}
+
+.action {
+        width: 26rem;
+}
+
+.contacts {
+        font-size: 4rem;
+        cursor: pointer;
+}
+
+.contacts:hover {
+        font-size: 4.1rem;
+}
+
+.link {
+        color: inherit;
+        text-decoration: inherit;
+}

@@ -1,0 +1,45 @@
+@use "../../Assets/SCSS/variables.scss";
+
+.container {
+    background-color: variables.$main-color;
+    font-size: 3.5rem;
+    padding: 0 2.1rem;
+    border-style: solid;
+    border-color: variables.$black;
+    border-width: 0.05rem;
+
+    &.transparent,
+    &.transparent-left,
+    &.transparent-left-small {
+        border-color: variables.$transparent;
+        background-color: variables.$transparent;
+    }
+
+    &.transparent-left,
+    &.transparent-left-small {
+        padding-left: 0;
+        text-align: start;
+    }
+
+    &.transparent-left-small,
+    &.small {
+        font-size: 2rem;
+    }
+
+    &:hover {
+        font-size: 3.6rem;
+        background-color: variables.$secondary-color;
+    }
+
+    &.transparent-left-small:hover,
+    &.small:hover {
+        font-size: 2.5rem;
+    }
+
+    &.transparent:hover,
+    &.transparent-left:hover,
+    &.transparent-left-small:hover {
+        background-color: variables.$transparent;
+    }
+
+}
