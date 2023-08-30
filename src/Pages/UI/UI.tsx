@@ -1,15 +1,13 @@
 import { useState } from "react";
 
 import InfoCard from "../../Components/InfoCard/InfoCard";
-import { EPorductCardItemType, EProductCard } from "../../Enums/ProductCard";
+import { EProductCard } from "../../Enums/ProductCard";
 import { IProduct } from "../../Models/Product";
 import { IProductCard } from "../../Models/ProductCard";
 import ProductsContainer from "../../Components/ProductsContainer/ProductsContainer";
-import { EInfoCardParagraph } from "../../Enums/InfoCard";
-import { EInfoCardAlign } from "../../Enums/InfoCard";
+import Button from "../../Components/Button/Button";
 
 import styles from "./UI.module.scss";
-import Button from "../../Components/Button/Button";
 
 export default function UI() {
   const [product] = useState<IProduct>({
@@ -27,6 +25,7 @@ export default function UI() {
         `,
     name: "Rosas",
     price: 20,
+    category: "Generic",
   });
 
   const products: IProductCard[] = [
