@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GiPresent } from "react-icons/gi";
 
 import ProductsContainer from "../../Components/ProductsContainer/ProductsContainer";
@@ -22,7 +22,6 @@ import { assertRouteKey } from "../../Assets/Constants/Routes";
 export default function Basket() {
   const [isShowingGiftMessage, setIsShowingGiftMessage] = useState(false);
   const [isShowingAlert, setIsShowingAlert] = useState(false);
-  const [alert, setAlert] = useState<string[]>([]);
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [address, setAddress] = useState<string>("");
@@ -34,7 +33,17 @@ export default function Basket() {
   const emptyProducts = useProductsStore((state) => state.emptyProducts);
   const setLastSale = useSalesStore((state) => state.setLastSale);
   const [giftMessage, setGiftMessage] = useState<string | null>(null);
+  const [actionsModal, setActionsModal] = useState<React.ReactNode | null>(
+    null
+  );
+  const [messagesModal, setMessagesModal] = useState<React.ReactNode | null>(
+    null
+  );
   const navigate = useNavigate();
+  const confirmPurchaseMessage: string = `Tem a certeza que quer avançar com o pedido?
+
+  Anote o código na proxima página para poder acompanhar a sua encomenda.
+  O valor total é apenas para os produtos, a vendedora irá informar-lhe do valor do transporte.`;
 
   const { data, refetch } = useQuery({
     queryKey: ["pord"],
@@ -64,12 +73,34 @@ export default function Basket() {
       .replaceAll("/", "")
       .replaceAll("_", "");
 
+  const finishPurchase = () =>
+    saleService
+      .newSale(
+        name,
+        phone,
+        address,
+        NIF,
+        productsStore.map((product) => ({
+          category: product.category,
+          id: product.id,
+        })),
+        true
+      )
+      .then((newSale) => {
+        setLastSale(newSale);
+        navigate(`/${assertRouteKey("finishedPurchase")}`);
+        emptyProducts();
+      });
+
   const makePurchase = () => {
     console.log(!!productsStore.length);
     if (!productsStore.length) {
-      setAlert([
-        "Nenhum produto foi selecionado, por favor faça as suas escolhas!",
-      ]);
+      setMessagesModal(
+        warningErrorMessages([
+          "Nenhum produto foi selecionado, por favor faça as suas escolhas!",
+        ])
+      );
+      setActionsModal(warningErrorActions());
       setIsShowingAlert(true);
       return;
     }
@@ -97,23 +128,9 @@ export default function Basket() {
       hasName &&
       hasPhone
     ) {
-      saleService
-        .newSale(
-          name,
-          phone,
-          address,
-          NIF,
-          productsStore.map((product) => ({
-            category: product.category,
-            id: product.id,
-          })),
-          true
-        )
-        .then((newSale) => {
-          setLastSale(newSale);
-          navigate(`/${assertRouteKey("finishedPurchase")}`);
-          emptyProducts();
-        });
+      setMessagesModal(<pre>{confirmPurchaseMessage}</pre>);
+      setActionsModal(warningConfirmActions());
+      setIsShowingAlert(true);
     } else {
       let alertMessages: string[] = [];
       !hasName &&
@@ -138,10 +155,49 @@ export default function Basket() {
           "Preencha um a morada do destinatário com caracteres válidos e com mais de 10 letras!"
         );
 
-      setAlert(alertMessages);
+      setMessagesModal(warningErrorMessages(alertMessages));
+      setActionsModal(warningErrorActions());
       setIsShowingAlert(true);
     }
   };
+
+  const warningErrorMessages = (alert: string[]) => (
+    <>
+      {alert.map((message, index) => (
+        <p key={index}>{message}</p>
+      ))}
+    </>
+  );
+
+  const warningErrorActions = () => (
+    <Button
+      onClick={() => {
+        setIsShowingAlert(false);
+      }}
+    >
+      Ok
+    </Button>
+  );
+
+  const warningConfirmActions = () => (
+    <>
+      <Button
+        onClick={() => {
+          finishPurchase();
+          setIsShowingAlert(false);
+        }}
+      >
+        Sim
+      </Button>
+      <Button
+        onClick={() => {
+          setIsShowingAlert(false);
+        }}
+      >
+        Não
+      </Button>
+    </>
+  );
 
   return (
     <div className={styles.container}>
@@ -244,20 +300,9 @@ export default function Basket() {
 
       <Modal isShowing={isShowingAlert} setIsShowing={setIsShowingAlert}>
         <div className={styles.alert}>
-          <div className={styles.messages}>
-            {alert.map((message, index) => (
-              <p key={index}>{message}</p>
-            ))}
-          </div>
-          <div className={styles.actions}>
-            <Button
-              onClick={() => {
-                setIsShowingAlert(false);
-              }}
-            >
-              Ok
-            </Button>
-          </div>
+          <h2 className={styles["alert-title"]}>Aviso</h2>
+          <div className={styles.messages}>{messagesModal}</div>
+          <div className={styles.actions}>{actionsModal}</div>
         </div>
       </Modal>
     </div>

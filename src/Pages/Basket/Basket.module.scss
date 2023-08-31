@@ -55,11 +55,16 @@
 
         .actions {
             margin-bottom: 4rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        &-title {
+            font-size: 5rem;
         }
     }
 
     .messages {
-        margin-top: 4rem;
         font-size: 2.4rem;
         font-weight: 900;
     }
