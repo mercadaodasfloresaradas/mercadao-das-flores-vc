@@ -124,7 +124,7 @@ export default function FollowPurchase() {
     enabled: !!lastSaleSearchID && canRequestWarnings,
   });
 
-  const isError: boolean = !!data?.error;
+  const isError: boolean = !!data?.error || !lastSaleSearchID;
 
   const SearchInput = () => (
     <Input
