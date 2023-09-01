@@ -195,12 +195,20 @@ export default function FollowPurchase() {
               topics={[
                 {
                   title: "Estado da Encomenda:",
-                  paragraph: `${purchaseState.val(data?.details.state || "")}`,
+                  paragraph: (
+                    <p className={styles["bigger-text"]}>{`${purchaseState.val(
+                      data?.details.state || ""
+                    )}`}</p>
+                  ),
                   align: "end",
                 },
                 {
                   title: "Total Encomenda:",
-                  paragraph: `${data?.details.priceTotal || 0}€`,
+                  paragraph: (
+                    <p className={styles["bigger-text"]}>{`${
+                      data?.details.priceTotal || 0
+                    }€`}</p>
+                  ),
                   type: EInfoCardParagraph.text,
                   align: "end",
                 },
