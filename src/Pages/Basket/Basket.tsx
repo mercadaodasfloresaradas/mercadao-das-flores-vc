@@ -45,7 +45,7 @@ export default function Basket() {
   Anote o código na proxima página para poder acompanhar a sua encomenda.
   O valor total é apenas para os produtos, a vendedora irá informar-lhe do valor do transporte.`;
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["pord"],
     queryFn: (): Promise<INewSaleResult> =>
       saleService.newSale(
@@ -60,6 +60,12 @@ export default function Basket() {
         false
       ),
   });
+
+  useEffect(() => {
+    if (!!data && !!data.productsToRemove && !!data.productsToRemove.length) {
+      data.productsToRemove.forEach((product) => removeProduct(product.id));
+    }
+  }, [data]);
 
   useEffect(() => {
     refetch();
@@ -93,7 +99,6 @@ export default function Basket() {
       });
 
   const makePurchase = () => {
-    console.log(!!productsStore.length);
     if (!productsStore.length) {
       setMessagesModal(
         warningErrorMessages([
@@ -203,7 +208,13 @@ export default function Basket() {
     <div className={styles.container}>
       <div className={styles.products}>
         <ProductsContainer
-          products={productsStore.map((product) => ({
+          products={((!!data &&
+            !!data.productsToRemove &&
+            !!data.productsToRemove.length) ||
+          isLoading
+            ? []
+            : productsStore
+          ).map((product) => ({
             product,
             actionVisual: EProductCard.remove,
             handleAction: (id, product) => {

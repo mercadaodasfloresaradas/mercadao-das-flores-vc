@@ -1,7 +1,9 @@
+import { IMinimalProduct } from "./MinimalProduct";
+
 export interface INewSaleResult {
   success: string;
   id: string;
   total: number;
-  productsToRemove: string[];
+  productsToRemove?: IMinimalProduct[];
   error?: string;
 }

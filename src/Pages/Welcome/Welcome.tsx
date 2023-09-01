@@ -50,7 +50,6 @@ export default function Welcome() {
           className={styles.link}
           onClick={() => {
             navigate("/contacts");
-            console.log("contacts");
           }}
         >
           <p className={styles.contacts}>Contactos</p>

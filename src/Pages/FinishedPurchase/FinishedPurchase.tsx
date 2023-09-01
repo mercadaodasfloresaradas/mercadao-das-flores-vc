@@ -25,8 +25,6 @@ export default function FinishedPurchase() {
     },
   });
 
-  console.log(warnings?.config.split("\r").length);
-
   return (
     <div className={styles.container}>
       <div>

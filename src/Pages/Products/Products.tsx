@@ -79,9 +79,13 @@ export default function Products() {
                         <Button
                           onClick={() => {
                             setCategorySelected(category.id);
-                            console.log(category.id);
                           }}
                           type={EButton.transparentLeftSmall}
+                          extraClasses={
+                            category.id === categorySelected
+                              ? styles.selected
+                              : ""
+                          }
                         >
                           {category.value}
                         </Button>

@@ -30,7 +30,9 @@ export default function ProductCard(props: IProductCard) {
 
   const getImageSRC = isBase64
     ? `data:image/jpeg;base64,${
-        imageData ? imageData.productPhoto.img64 : img64
+        !!imageData && imageData.productPhoto
+          ? imageData.productPhoto.img64
+          : img64
       }`
     : img64;
 
