@@ -2,9 +2,8 @@ import styles from "./Contacts.module.scss";
 
 export default function Contacts() {
   return (
-    <div>
-      <pre className={styles.data}>
-        {`
+    <div className={styles.container}>
+      {`
                 Horários
                 Seg:
                 Ter:
@@ -17,8 +16,15 @@ export default function Contacts() {
                 TLF: 234427229
                 TLM:963928334
                 hsilva.maria@gmail.com
-          `}
-      </pre>
+                `
+        .split("\n")
+        .map((element, index) => {
+          return (
+            <p className={styles.data} key={index}>
+              {element}
+            </p>
+          );
+        })}
     </div>
   );
 }

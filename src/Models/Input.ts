@@ -6,6 +6,7 @@ export interface IInput {
   id: string;
   type?: string;
   label?: string;
+  extraClasses?: string;
   actions?: {
     handler: () => void;
     data: React.ReactNode;

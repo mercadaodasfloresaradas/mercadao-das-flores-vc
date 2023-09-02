@@ -230,6 +230,7 @@ export default function Basket() {
           label="Nome Completo"
           value={name}
           setValue={setName}
+          extraClasses={styles.input}
         />
         <Input
           id="client-phone"
@@ -241,6 +242,7 @@ export default function Basket() {
               setPhone(val);
             }
           }}
+          extraClasses={styles.input}
         />
         <Input
           id="client-nif"
@@ -252,6 +254,7 @@ export default function Basket() {
               setNIF(val);
             }
           }}
+          extraClasses={styles.input}
         />
         <h3>Destinatário</h3>
         <Input
@@ -259,6 +262,7 @@ export default function Basket() {
           label="Nome Completo"
           value={destName}
           setValue={setDestName}
+          extraClasses={styles.input}
         />
         <Input
           id="dest-phone"
@@ -270,12 +274,14 @@ export default function Basket() {
               setDestPhone(val);
             }
           }}
+          extraClasses={styles.input}
         />
         <Input
           id="dest-address"
           label="Morada"
           value={address}
           setValue={setAddress}
+          extraClasses={styles.input}
         />
       </div>
       <div className={styles.actions}>

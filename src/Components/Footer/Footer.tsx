@@ -59,6 +59,7 @@ export default function Footer() {
             onClick={() => {
               navigate(`/${assertRouteKey("finishedPurchase")}`);
             }}
+            extraClasses={styles["lastSale-btn"]}
           >
             Última Encomenda
           </Button>

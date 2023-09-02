@@ -46,18 +46,18 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <Button
-          onClick={() => {
-            navigate(`/${assertRouteKey("basket")}`);
-          }}
-          extraClasses={styles["basket"]}
-        >
-          <div className={styles["basket-container"]}>
-            <BsFillBasket2Fill />
-            <span className={styles["basket-count"]}>{productCount}</span>
-          </div>
-        </Button>
       </div>
+      <Button
+        onClick={() => {
+          navigate(`/${assertRouteKey("basket")}`);
+        }}
+        extraClasses={styles["basket"]}
+      >
+        <div className={styles["basket-container"]}>
+          <BsFillBasket2Fill />
+          <span className={styles["basket-count"]}>{productCount}</span>
+        </div>
+      </Button>
       <div className={styles.flowers}>
         <Flowers />
       </div>

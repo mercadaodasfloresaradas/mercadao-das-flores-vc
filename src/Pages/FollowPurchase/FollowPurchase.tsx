@@ -83,6 +83,31 @@ const Warnings = (props: {
   );
 };
 
+const SearchInput = (props: {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setLastSaleSearchID: (val: string) => void;
+}) => {
+  const { search, setSearch, setLastSaleSearchID } = props;
+
+  return (
+    <Input
+      id="search-order"
+      label="ID da compra"
+      value={search}
+      setValue={setSearch}
+      actions={[
+        {
+          handler: () => {
+            setLastSaleSearchID(search.trim().replaceAll(" ", ""));
+          },
+          data: <IoSearchCircleSharp />,
+        },
+      ]}
+    />
+  );
+};
+
 export default function FollowPurchase() {
   const lastSaleSearchID = useSalesStore((state) => state.lastSaleSearchID);
   const warningMessageNotValid: string =
@@ -125,23 +150,6 @@ export default function FollowPurchase() {
   });
 
   const isError: boolean = !!data?.error || !lastSaleSearchID;
-
-  const SearchInput = () => (
-    <Input
-      id="search-order"
-      label="ID da compra"
-      value={search}
-      setValue={setSearch}
-      actions={[
-        {
-          handler: () => {
-            setLastSaleSearchID(search.trim().replaceAll(" ", ""));
-          },
-          data: <IoSearchCircleSharp />,
-        },
-      ]}
-    />
-  );
 
   const sendMessage = () => {
     const messageLength: number = message
@@ -264,11 +272,25 @@ export default function FollowPurchase() {
             />
           )}
         </div>
-        <div className={styles.search}>{isError ? <></> : <SearchInput />}</div>
+        <div className={styles.search}>
+          {isError ? (
+            <></>
+          ) : (
+            <SearchInput
+              search={search}
+              setLastSaleSearchID={setLastSaleSearchID}
+              setSearch={setSearch}
+            />
+          )}
+        </div>
       </div>
       {isError ? (
         <div className={styles["chat-only"]}>
-          <SearchInput />
+          <SearchInput
+            search={search}
+            setLastSaleSearchID={setLastSaleSearchID}
+            setSearch={setSearch}
+          />
         </div>
       ) : (
         <></>

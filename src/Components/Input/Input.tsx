@@ -10,9 +10,10 @@ export default function Input(props: IInput) {
     type = "text",
     label = "",
     id,
+    extraClasses = "",
   } = props;
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${extraClasses}`}>
       <div className={styles["container-input"]}>
         <label htmlFor={id} className={styles.label}>
           {label}
