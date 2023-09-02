@@ -38,7 +38,6 @@ export default function FinishedPurchase() {
             {
               title: "Total",
               paragraph: `${lastSale?.total}€`,
-              isLittleTitle: true,
               alignText: "center-text",
             },
           ]}

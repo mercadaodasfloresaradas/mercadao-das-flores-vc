@@ -1,7 +1,7 @@
 @use "../../Assets/SCSS/variables.scss";
 
 .container {
-    height: 30rem;
+    height: 25rem;
     width: 100%;
     background-color: variables.$main-color;
     display: flex;
@@ -80,7 +80,7 @@
         width: 32rem;
         height: 22rem;
         right: 11rem;
-        bottom: 0;
+        bottom: 3.4rem;
         transform: translate(0, 50%);
         z-index: 100;
     }
