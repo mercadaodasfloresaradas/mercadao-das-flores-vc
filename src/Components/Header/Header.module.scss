@@ -1,4 +1,6 @@
 @use "../../Assets/SCSS/variables.scss";
+@import "../../Assets/SCSS/mixin.scss";
+
 
 .container {
     height: 25rem;
@@ -29,11 +31,20 @@
         display: flex;
         gap: 8rem;
         font-size: 5rem;
+
+        @include devicesBreak(bigdesktop) {
+            gap: 4rem;
+            font-size: 3rem;
+        }
     }
 
     .current-title {
         font-size: 8rem;
         font-weight: 400;
+
+        @include devicesBreak(bigdesktop) {
+            font-size: 5rem;
+        }
     }
 
     .basket {
@@ -44,6 +55,12 @@
         padding: 0;
         transform: translate(0, -1rem);
         margin-right: 6rem;
+
+        @include devicesBreak(bigdesktop) {
+            font-size: 5rem;
+            width: 5rem;
+            height: 5rem;
+        }
 
         &-count {
             position: absolute;
@@ -57,6 +74,12 @@
             top: -0.5rem;
             right: -0.5rem;
             transform: translate(3rem, -2.5rem);
+
+            @include devicesBreak(bigdesktop) {
+                width: 4rem;
+                height: 4rem;
+                transform: translate(1.8rem, -1.5rem);
+            }
         }
 
         &-container {
@@ -67,6 +90,10 @@
             font-size: 7.8rem;
             background-color: initial;
             cursor: pointer;
+
+            @include devicesBreak(bigdesktop) {
+                font-size: 6rem;
+            }
         }
 
     }

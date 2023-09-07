@@ -4,5 +4,11 @@
 }
 
 .container {
-    margin-left: 4rem;
+    margin: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.store {
+    width: 50%;
 }
