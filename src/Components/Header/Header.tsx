@@ -61,6 +61,19 @@ export default function Header() {
       <div className={styles.flowers}>
         <Flowers />
       </div>
+      <div className={styles["redirects-mobile"]}>
+        <div className={styles["redirects-mobile-links"]}>
+          {activeRedirects.map((redirect, index) => (
+            <Link
+              className={styles.link}
+              key={index}
+              to={Object.keys(redirect)[0]}
+            >
+              {Object.values(redirect)[0]}
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
