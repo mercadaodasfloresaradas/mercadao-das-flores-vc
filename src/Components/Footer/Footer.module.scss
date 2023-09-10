@@ -1,4 +1,5 @@
 @use "../../Assets/SCSS/variables.scss";
+@import "../../Assets/SCSS/mixin.scss";
 
 .container {
     position: fixed;
@@ -11,18 +12,33 @@
     justify-content: space-between;
     color: variables.$white;
 
-
-
     .contacts {
         display: flex;
         gap: 1.2rem;
+
+        @include devicesBreak(bigphone) {
+            gap: 0.8rem;
+        }
+
+        @include devicesBreak(phone) {
+            gap: 0.4rem;
+        }
 
         &-title {
             font-weight: 400;
             font-size: 5rem;
             display: flex;
-            align-items: center;
             height: 100%;
+            align-items: center;
+
+            @include devicesBreak(tablet) {
+                font-size: 4rem;
+            }
+
+            @include devicesBreak(bigphone) {
+                font-size: 2.4rem;
+                flex-direction: column;
+            }
         }
 
         &-info {
@@ -31,8 +47,25 @@
             flex-direction: column;
             margin-top: 1rem;
 
+            @include devicesBreak(tablet) {
+                font-size: 2rem;
+            }
+
+            @include devicesBreak(miniphone) {
+                margin-top: 1.6rem;
+                transform: translate(-4rem, 0) scale(90%);
+            }
+
             p {
                 margin: -0.4rem 0;
+
+                @include devicesBreak(tablet) {
+                    margin: 0 0;
+                }
+
+                @include devicesBreak(phone) {
+                    height: 2rem;
+                }
             }
         }
     }
@@ -42,8 +75,21 @@
         gap: 2.4rem;
         align-items: center;
 
+        @include devicesBreak(phone) {
+            flex-direction: column;
+            gap: 0;
+        }
+
         .icon {
             font-size: 8rem;
+
+            @include devicesBreak(tablet) {
+                font-size: 6rem;
+            }
+
+            @include devicesBreak(bigphone) {
+                font-size: 4rem;
+            }
         }
     }
 
