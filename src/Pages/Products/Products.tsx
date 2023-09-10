@@ -98,6 +98,20 @@ export default function Products() {
             },
           ]}
         />
+        <div className={styles["products-mobile"]}>
+          <ProductsContainer
+            products={
+              productsData
+                ? productsData.products.map((product) => ({
+                    product,
+                    handleAction(id, product) {
+                      addProduct(product);
+                    },
+                  }))
+                : []
+            }
+          />
+        </div>
         <InfoCard
           topics={[
             {
@@ -125,18 +139,20 @@ export default function Products() {
           ]}
         />
       </div>
-      <ProductsContainer
-        products={
-          productsData
-            ? productsData.products.map((product) => ({
-                product,
-                handleAction(id, product) {
-                  addProduct(product);
-                },
-              }))
-            : []
-        }
-      />
+      <div className={styles.products}>
+        <ProductsContainer
+          products={
+            productsData
+              ? productsData.products.map((product) => ({
+                  product,
+                  handleAction(id, product) {
+                    addProduct(product);
+                  },
+                }))
+              : []
+          }
+        />
+      </div>
       <div></div>
     </div>
   );

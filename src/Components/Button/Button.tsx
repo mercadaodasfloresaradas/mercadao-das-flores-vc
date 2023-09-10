@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Button.module.scss";
 import { IButton } from "../../Models/Button";
 import { EButton } from "../../Enums/Button";

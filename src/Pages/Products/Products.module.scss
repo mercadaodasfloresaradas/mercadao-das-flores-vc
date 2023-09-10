@@ -1,8 +1,23 @@
+@import "../../Assets/SCSS/mixin.scss";
+
 .container {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     gap: 5rem;
     padding: 0 3rem;
+
+    @include devicesBreak(bigdesktop) {
+        grid-template-columns: 1fr 3fr;
+    }
+
+    @include devicesBreak(desktop) {
+        gap: 2rem;
+    }
+
+    @include devicesBreak(tablet) {
+        display: flex;
+        flex-direction: column;
+    }
 
     .info {
         display: flex;
@@ -16,5 +31,20 @@
 
     .selected {
         font-weight: 900;
+    }
+
+    .products {
+
+        @include devicesBreak(tablet) {
+            display: none;
+        }
+
+        &-mobile {
+            display: none;
+
+            @include devicesBreak(tablet) {
+                display: block;
+            }
+        }
     }
 }

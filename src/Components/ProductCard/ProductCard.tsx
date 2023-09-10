@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BsFillCartPlusFill, BsCartDashFill } from "react-icons/bs";
 
 import { IProductCard } from "../../Models/ProductCard";
@@ -79,6 +78,7 @@ export default function ProductCard(props: IProductCard) {
               <Button
                 onClick={() => handleAction(id, product)}
                 type={EButton.transparent}
+                extraClasses={styles["action-input"]}
               >
                 <ActionIcon />
               </Button>

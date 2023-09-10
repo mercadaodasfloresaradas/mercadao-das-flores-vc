@@ -3,7 +3,7 @@ const routes: { [id: string]: string } = {
   contacts: "Contactos",
   followPurchase: "Minha Encomenda",
   basket: "Cesto",
-  products: "Productos",
+  products: "Produtos",
   finishedPurchase: "Pedido Feito",
 };
 
