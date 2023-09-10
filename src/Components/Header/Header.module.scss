@@ -19,6 +19,16 @@
         justify-content: center;
         height: 100%;
         margin-left: 6rem;
+
+        @include devicesBreak(bigphone) {
+            width: 14rem;
+        }
+
+        @include devicesBreak(phone) {
+            width: 12rem;
+            font-size: 1.2rem;
+            margin-left: 2rem;
+        }
     }
 
     .right {
@@ -52,6 +62,11 @@
                 justify-content: center;
                 pointer-events: all;
                 z-index: 10;
+            }
+
+            @include devicesBreak(bigphone) {
+                font-size: 2.2rem;
+                transform: translate(0, 3rem);
             }
 
             &-links {
@@ -100,6 +115,14 @@
         @include devicesBreak(desktop) {
             font-size: 4.4rem;
         }
+
+        @include devicesBreak(bigphone) {
+            font-size: 2.8rem;
+        }
+
+        @include devicesBreak(phone) {
+            font-size: 2.2rem;
+        }
     }
 
     .basket {
@@ -121,6 +144,16 @@
             font-size: 4.4rem;
             width: 4.4rem;
             height: 4.4rem;
+        }
+
+        @include devicesBreak(bigphone) {
+            font-size: 3.4rem;
+            width: 3.4rem;
+            height: 3.4rem;
+        }
+
+        @include devicesBreak(phone) {
+            margin-right: 2.4rem;
         }
 
         &-count {
