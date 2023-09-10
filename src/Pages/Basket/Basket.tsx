@@ -286,7 +286,7 @@ export default function Basket() {
       </div>
       <div className={styles.actions}>
         <Button
-          extraClasses={styles["gift-btn"]}
+          extraClasses={`${styles["gift-btn"]} `}
           onClick={() => {
             setIsShowingGiftMessage(true);
           }}
@@ -301,6 +301,7 @@ export default function Basket() {
               paragraph: "",
             },
           ]}
+          extraClasses={styles.total}
         />
         <Button
           extraClasses={styles["finish-btn"]}

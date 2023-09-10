@@ -1,24 +1,64 @@
+@import "../../Assets/SCSS/mixin.scss";
+
 .container {
     display: grid;
     grid-template-columns: 2fr 4fr 1fr;
     padding: 0 4.4rem;
     column-gap: 2.6rem;
 
+    @include devicesBreak(bigdesktop) {
+        column-gap: 1rem;
+        grid-template-columns: 2fr 3fr 1fr;
+    }
+
+    @include devicesBreak(desktop) {
+        padding: 0 3rem;
+        grid-template-columns: 2fr 1.8fr 0.8fr;
+    }
+
+    @include devicesBreak(tablet) {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
     .products {
         max-height: 60.5rem;
         overflow-y: auto;
+
+        @include devicesBreak(tablet) {
+            order: 3;
+        }
     }
 
     .form {
         display: flex;
         flex-direction: column;
         gap: 4rem;
+
+        @include devicesBreak(tablet) {
+            order: 2;
+        }
     }
 
     .actions {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        justify-content: center;
+
+        @include devicesBreak(tablet) {
+            order: 1;
+            flex-direction: row;
+        }
+
+        @include devicesBreak(tablet) {
+            flex-direction: column;
+        }
+    }
+
+    .total h3 {
+        display: flex;
         justify-content: center;
     }
 
@@ -41,6 +81,8 @@
             word-wrap: break-word;
             line-height: 3rem;
             display: flex;
+            align-items: center;
+            justify-content: center;
             padding-top: 1.8rem;
         }
 
@@ -54,6 +96,10 @@
     .finish-btn {
         padding-top: 2rem;
         padding-bottom: 2rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .alert {
