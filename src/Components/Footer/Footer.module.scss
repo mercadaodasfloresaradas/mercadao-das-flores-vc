@@ -102,6 +102,12 @@
             width: 26rem;
             height: 6rem;
             font-size: 3rem;
+
+            @include devicesBreak(tablet) {
+                width: 20rem;
+                height: 4rem;
+                font-size: 2rem;
+            }
         }
     }
 }
