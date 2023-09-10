@@ -1,3 +1,5 @@
+@import "../../Assets/SCSS/mixin.scss";
+
 .data {
     font-weight: 400;
     font-size: 3.2rem;
@@ -7,8 +9,20 @@
     margin: 0 4rem;
     display: flex;
     justify-content: space-between;
+
+    @include devicesBreak(bigdesktop) {
+        flex-direction: column;
+    }
 }
 
 .store {
     width: 50%;
+
+    @include devicesBreak(bigdesktop) {
+        width: 90%;
+    }
+
+    @include devicesBreak(phone) {
+        width: 100%;
+    }
 }
