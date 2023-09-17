@@ -116,6 +116,10 @@
             font-size: 4.4rem;
         }
 
+        @include devicesBreak(tablet) {
+            font-weight: 900;
+        }
+
         @include devicesBreak(bigphone) {
             font-size: 2.8rem;
         }

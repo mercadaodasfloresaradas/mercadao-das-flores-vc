@@ -108,6 +108,7 @@
         align-items: center;
         justify-content: space-between;
         height: 100%;
+        padding: 0.4rem;
 
         .actions {
             margin-bottom: 4rem;
@@ -117,11 +118,27 @@
 
         &-title {
             font-size: 5rem;
+
+            @include devicesBreak(bigdesktop) {
+                font-size: 4rem;
+            }
+
+            @include devicesBreak(bigphone) {
+                font-size: 3rem;
+            }
         }
     }
 
     .messages {
         font-size: 2.4rem;
         font-weight: 900;
+
+        @include devicesBreak(bigdesktop) {
+            font-size: 2rem;
+        }
+
+        @include devicesBreak(bigphone) {
+            font-size: 1.8rem;
+        }
     }
 }

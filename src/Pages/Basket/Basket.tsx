@@ -133,7 +133,7 @@ export default function Basket() {
       hasName &&
       hasPhone
     ) {
-      setMessagesModal(<pre>{confirmPurchaseMessage}</pre>);
+      setMessagesModal(<div>{confirmPurchaseMessage}</div>);
       setActionsModal(warningConfirmActions());
       setIsShowingAlert(true);
     } else {

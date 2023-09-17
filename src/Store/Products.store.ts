@@ -4,7 +4,7 @@ import { IProduct } from "../Models/Product";
 
 export interface ProductsState {
   produts: IProduct[];
-  addProduct: (product: IProduct) => void;
+  addProduct: (product: IProduct) => any;
   removeProduct: (id: string) => void;
   emptyProducts: () => void;
 }

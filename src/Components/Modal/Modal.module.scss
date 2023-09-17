@@ -1,4 +1,5 @@
 @use "../../Assets/SCSS/variables.scss";
+@import "../../Assets/SCSS/mixin.scss";
 
 .cover {
     position: fixed;
@@ -31,4 +32,20 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @include devicesBreak(tablet) {
+        width: 60%;
+    }
+
+    @include devicesBreak(bigphone) {
+        width: 70%;
+    }
+
+    @include devicesBreak(phone) {
+        width: 80%;
+    }
+
+    @include devicesBreak(miniphone) {
+        width: 95%;
+    }
 }
