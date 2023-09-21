@@ -1,9 +1,10 @@
 import { Outlet } from "react-router";
-
-import styles from "./Layout.module.scss";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Lightbox from "../Lightbox/Lightbox";
+import ProductCounterNotify from "../ProductCounterNotify/ProductCounterNotify";
+
+import styles from "./Layout.module.scss";
 
 export default function Layout() {
   return (
@@ -16,6 +17,7 @@ export default function Layout() {
         <Footer />
       </div>
       <Lightbox />
+      <ProductCounterNotify />
     </>
   );
 }

@@ -11,6 +11,7 @@ import { IPhoto } from "../../Models/Photo";
 import { useLightboxStore } from "../../Store/Lightbox.store";
 
 import styles from "./ProductCard.module.scss";
+import Loading from "../Loading/Loading";
 
 export default function ProductCard(props: IProductCard) {
   const {
@@ -25,7 +26,7 @@ export default function ProductCard(props: IProductCard) {
 
   const setProductImg64 = useLightboxStore((state) => state.setProductImg64);
 
-  const { data: imageData } = useQuery({
+  const { data: imageData, isLoading } = useQuery({
     queryKey: ["productImage", id],
     queryFn: (): Promise<IPhoto> => productsService.photo(id, category),
     enabled: isBase64 && !!category,
@@ -69,7 +70,11 @@ export default function ProductCard(props: IProductCard) {
           type={EPorductCardItemType.r}
           onClick={() => setProductImg64(isBase64 ? finalImg64 : "")}
         >
-          <img className={styles.image} src={getImageSRC}></img>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <img className={styles.image} src={getImageSRC}></img>
+          )}
         </CardItem>
         <CardItem type={EPorductCardItemType.n}>
           <div className={styles.details}>

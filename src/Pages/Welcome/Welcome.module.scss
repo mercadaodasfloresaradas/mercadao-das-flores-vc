@@ -1,3 +1,5 @@
+@import "../../Assets/SCSS/mixin.scss";
+
 .container {
         font-size: 1rem;
 }
@@ -6,6 +8,21 @@
         position: absolute;
         width: 30rem;
         height: 30rem;
+
+        @include devicesBreak(tablet) {
+                width: 25rem;
+                height: 25rem;
+        }
+
+        @include devicesBreak(bigphone) {
+                width: 20rem;
+                height: 20rem;
+        }
+
+        @include devicesBreak(phone) {
+                width: 18rem;
+                height: 18rem;
+        }
 
         &-lt {
                 top: 0;
@@ -51,11 +68,25 @@
 .title {
         font-size: 4rem;
         font-weight: 100;
+
+        @include devicesBreak(bigphone) {
+                font-size: 2.8rem;
+                font-weight: 500;
+        }
+
+        @include devicesBreak(phone) {
+                font-size: 2.2rem;
+                font-weight: 900;
+        }
 }
 
 .actions {
         display: flex;
         gap: 0.5rem;
+
+        @include devicesBreak(bigphone) {
+                flex-direction: column;
+        }
 }
 
 .action {
@@ -65,6 +96,10 @@
 .contacts {
         font-size: 4rem;
         cursor: pointer;
+
+        @include devicesBreak(bigphone) {
+                font-size: 2.8rem;
+        }
 }
 
 .contacts:hover {
