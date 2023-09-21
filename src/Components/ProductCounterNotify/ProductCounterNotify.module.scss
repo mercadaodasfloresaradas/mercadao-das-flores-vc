@@ -16,7 +16,7 @@
     font-size: 32px;
     font-weight: 700;
     transform: translate(-50%, -50%);
-    z-index: 200;
+    z-index: 101;
 
     -webkit-animation: up 1.5s ease-in-out;
     -o-animation: up 1.5s ease-in-out;
@@ -26,6 +26,7 @@
 }
 
 .block-nnp {
+    z-index: 100;
     position: absolute;
     top: 0;
     bottom: 0;
