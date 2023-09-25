@@ -12,8 +12,10 @@ class SaleService {
     "phone": "",
     "address": "",
     "NIF": "",
+    "destName": "",
+    "destPhone": ""
     "products": [{"id": "", "category": ""}],
-    "hasToSave": true
+    "hasToSave": true, 
     }
 
     {
@@ -28,6 +30,8 @@ class SaleService {
     phone: string,
     address: string,
     NIF: string,
+    destName: string,
+    destPhone: string,
     products: IMinimalProduct[],
     hasToSave: boolean
   ): Promise<INewSaleResult> => {
@@ -36,6 +40,8 @@ class SaleService {
       phone,
       address,
       products,
+      destName,
+      destPhone,
       NIF,
       hasToSave,
     });

@@ -73,6 +73,10 @@ class ConfigService {
     return this.config(EConfigRoute.instagram);
   }
 
+  contactsPage() {
+    return this.config(EConfigRoute.contactsPage);
+  }
+
   stateConfig(state: EPurchaseState) {
     switch (state) {
       case EPurchaseState.pay:

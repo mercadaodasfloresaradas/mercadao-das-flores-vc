@@ -53,6 +53,8 @@ export default function Basket() {
         "*",
         "*",
         "*",
+        "*",
+        "*",
         productsStore.map((product) => ({
           category: product.category,
           id: product.id,
@@ -86,6 +88,8 @@ export default function Basket() {
         phone,
         address,
         NIF,
+        destName,
+        destPhone,
         productsStore.map((product) => ({
           category: product.category,
           id: product.id,

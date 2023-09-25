@@ -21,4 +21,6 @@ export enum EConfigRoute {
     .limitProducts as any,
   facebook = (serviceRoutes.config as () => IServiceRoutes)().facebook as any,
   instagram = (serviceRoutes.config as () => IServiceRoutes)().instagram as any,
+  contactsPage = (serviceRoutes.config as () => IServiceRoutes)()
+    .contactsPage as any,
 }

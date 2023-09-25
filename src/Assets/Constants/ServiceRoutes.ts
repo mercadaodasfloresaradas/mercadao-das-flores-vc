@@ -31,6 +31,7 @@ export const serviceRoutes: IServiceRoutes = {
       limitProducts: this.configBase + "/limit",
       facebook: this.configBase + "/facebook",
       instagram: this.configBase + "/instagram",
+      contactsPage: this.configBase + "/contacts/page",
     };
   },
 };
