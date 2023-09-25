@@ -35,4 +35,10 @@
             @content;
         }
     }
+
+    @if $breakpoint ==superminiphone {
+        @media only screen and (max-width: 300px) {
+            @content;
+        }
+    }
 }

@@ -30,7 +30,7 @@ export default function Welcome() {
         <LogoName headerType="h1" headerClasses={styles.title} />
         <div className={styles.actions}>
           <Button
-            extraClasses={styles.action}
+            extraClasses={`${styles.action} ${styles.follow}`}
             onClick={() => {
               navigate(`/${assertRouteKey("followPurchase")}`);
             }}

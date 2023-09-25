@@ -68,10 +68,10 @@ export default function Footer() {
         <></>
       )}
       <div className={styles.social}>
-        <a href={instagram?.config} target="_blank">
+        <a href={instagram?.config} target="_blank" className={styles.link}>
           <FiInstagram className={styles.icon} />
         </a>
-        <a href={facebook?.config} target="_blank">
+        <a href={facebook?.config} target="_blank" className={styles.link}>
           <FaFacebookSquare className={styles.icon} />
         </a>
       </div>

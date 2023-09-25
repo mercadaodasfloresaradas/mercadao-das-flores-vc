@@ -75,7 +75,12 @@
         }
 
         @include devicesBreak(phone) {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                font-weight: 900;
+        }
+
+        @include devicesBreak(superminiphone) {
+                font-size: 1.6rem;
                 font-weight: 900;
         }
 }
@@ -91,6 +96,10 @@
 
 .action {
         width: 26rem;
+}
+
+.follow {
+        white-space: nowrap;
 }
 
 .contacts {
