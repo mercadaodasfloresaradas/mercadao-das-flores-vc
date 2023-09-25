@@ -104,6 +104,11 @@
         right: 4rem;
         top: -7rem;
 
+        @include devicesBreak(tablet) {
+            right: 4rem;
+            top: -4.2rem;
+        }
+
         &-btn {
             width: 26rem;
             height: 6rem;
