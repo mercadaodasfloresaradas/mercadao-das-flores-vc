@@ -11,7 +11,7 @@ export default function InfoCard(props: IInfoCard) {
     const {
       paragraph,
       title,
-      seperator = "\n",
+      seperator = ["\n"],
       type = EInfoCardParagraph.text,
       isLittleTitle = false,
       align = "center",
@@ -29,6 +29,23 @@ export default function InfoCard(props: IInfoCard) {
     };
   };
 
+  const paragraphSerated = (
+    paragraph: string[],
+    seperator: string[],
+    index: number = 0
+  ): string[] => {
+    let result: string[] = [];
+    if (!seperator.length || seperator.length <= index) {
+      return paragraph;
+    }
+
+    paragraph.forEach((line: string) => {
+      result = [...result, ...line.split(seperator[index])];
+    });
+
+    return paragraphSerated(result, seperator, index + 1);
+  };
+
   const Paragraph = (props: IInfoCardTopic) => {
     const { type, paragraph, seperator } = props;
 
@@ -38,29 +55,27 @@ export default function InfoCard(props: IInfoCard) {
       case EInfoCardParagraph.enumeration:
         return (
           <ol className={styles["list-ol"]}>
-            {(paragraph as string)
-              .split(seperator!)
-              .map((line, index) =>
+            {paragraphSerated([paragraph as string], seperator!).map(
+              (line, index) =>
                 line ? (
                   <li key={index}>{line}</li>
                 ) : (
                   <React.Fragment key={index} />
                 )
-              )}
+            )}
           </ol>
         );
       case EInfoCardParagraph.points:
         return (
           <ul className={styles["list-ul"]}>
-            {(paragraph as string)
-              .split(seperator!)
-              .map((line, index) =>
+            {paragraphSerated([paragraph as string], seperator!).map(
+              (line, index) =>
                 line ? (
                   <li key={index}>{line}</li>
                 ) : (
                   <React.Fragment key={index} />
                 )
-              )}
+            )}
           </ul>
         );
       default:

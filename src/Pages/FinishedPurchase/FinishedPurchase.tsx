@@ -56,14 +56,14 @@ export default function FinishedPurchase() {
               paragraph: warnings?.config || "",
               type: EInfoCardParagraph.enumeration,
               alignText: "start-text",
-              seperator: "\r",
+              seperator: ["\r", "\n"],
             },
             {
               title: "",
               paragraph: payments?.config,
               type: EInfoCardParagraph.points,
               alignText: "start-text",
-              seperator: "\r",
+              seperator: ["\r", "\n"],
             },
           ]}
         />

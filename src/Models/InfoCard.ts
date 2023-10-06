@@ -11,7 +11,7 @@ export interface IInfoCardTopic {
   isLittleTitle?: boolean;
   paragraph: string | React.ReactNode;
   type?: EInfoCardParagraph;
-  seperator?: string;
+  seperator?: string[];
   align?: "start" | "end" | "center";
   alignText?: "start-text" | "end-text" | "center-text";
 }

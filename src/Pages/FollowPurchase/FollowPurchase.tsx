@@ -239,7 +239,7 @@ export default function FollowPurchase() {
                           .join(":")
                           .slice(0, -1)
                       : warnings?.config) || "",
-                  seperator: "\r",
+                  seperator: ["\r", "\n"],
                   type: EInfoCardParagraph.points,
                   isLittleTitle: true,
                   align: "start",

@@ -298,7 +298,7 @@ export default function Basket() {
           }}
         >
           <GiPresent className={styles["gift-icon"]} />
-          Messagem Presente
+          Mensagem Presente
         </Button>
         <InfoCard
           topics={[
