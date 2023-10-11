@@ -16,13 +16,19 @@ export default function Contacts() {
         <Loading />
       ) : (
         <div>
-          {data?.config.split("\n").map((element, index) => {
-            return (
-              <p className={styles.data} key={index}>
-                {element}
-              </p>
-            );
-          })}
+          {data?.config
+            .split("\n")
+            .reduce(
+              (prev, current) => [...prev, ...current.split("\r")],
+              [] as string[]
+            )
+            .map((element, index) => {
+              return (
+                <p className={styles.data} key={index}>
+                  {element}
+                </p>
+              );
+            })}
         </div>
       )}
       <img
