@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GiPresent } from "react-icons/gi";
+import { DayPicker } from "react-day-picker";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import "react-day-picker/dist/style.css";
 
 import ProductsContainer from "../../Components/ProductsContainer/ProductsContainer";
 import { EProductCard } from "../../Enums/ProductCard";
@@ -7,17 +11,14 @@ import Input from "../../Components/Input/Input";
 import Button from "../../Components/Button/Button";
 import InfoCard from "../../Components/InfoCard/InfoCard";
 import GiftMessageForm from "../../Components/GiftMessageForm/GiftMessageForm";
-
 import { useProductsStore } from "../../Store/Products.store";
 import { saleService } from "../../Services/Sale.service";
 import { INewSaleResult } from "../../Models/NewSaleResult";
-import { useQuery } from "@tanstack/react-query";
-
-import styles from "./Basket.module.scss";
 import Modal from "../../Components/Modal/Modal";
 import { useSalesStore } from "../../Store/Sales.store";
-import { useNavigate } from "react-router-dom";
 import { assertRouteKey } from "../../Assets/Constants/Routes";
+
+import styles from "./Basket.module.scss";
 
 export default function Basket() {
   const [isShowingGiftMessage, setIsShowingGiftMessage] = useState(false);
@@ -39,11 +40,35 @@ export default function Basket() {
   const [messagesModal, setMessagesModal] = useState<React.ReactNode | null>(
     null
   );
+  const [deliverDate, setDeliverDate] = useState<Date>();
+  const [isInChangeDeliverDate, setIsInChangeDeliverDate] =
+    useState<boolean>(false);
+
   const navigate = useNavigate();
   const confirmPurchaseMessage: string = `Tem a certeza que quer avançar com o pedido?
 
   Anote o código na proxima página para poder acompanhar a sua encomenda.
   O valor total é apenas para os produtos, a vendedora irá informar-lhe do valor do transporte.`;
+
+  let headerDeliverDate = (
+    <Button
+      extraClasses={styles["deliver-btn"]}
+      onClick={() => {
+        setIsInChangeDeliverDate(true);
+      }}
+    >
+      Data de Entrega
+      {deliverDate ? (
+        <p>
+          {`${deliverDate.getDate()}-${
+            deliverDate.getMonth() + 1
+          }-${deliverDate.getFullYear()}`}
+        </p>
+      ) : (
+        ""
+      )}
+    </Button>
+  );
 
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["pord"],
@@ -315,6 +340,22 @@ export default function Basket() {
         >
           Fazer Pedido
         </Button>
+        <div className={styles.date}>
+          {isInChangeDeliverDate ? (
+            <DayPicker
+              mode="single"
+              selected={deliverDate}
+              onSelect={(date) => {
+                if (!!date) {
+                  setDeliverDate(date);
+                }
+                setIsInChangeDeliverDate(false);
+              }}
+            />
+          ) : (
+            headerDeliverDate
+          )}
+        </div>
       </div>
       <GiftMessageForm
         isShowing={isShowingGiftMessage}
