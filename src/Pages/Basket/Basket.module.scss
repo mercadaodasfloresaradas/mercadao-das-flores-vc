@@ -108,6 +108,11 @@
         flex-direction: column;
     }
 
+    .date {
+        display: flex;
+        justify-content: center;
+    }
+
     .date,
     .deliver-btn {
         width: 100%;

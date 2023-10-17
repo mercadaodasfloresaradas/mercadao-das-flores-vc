@@ -145,6 +145,12 @@ export default function Basket() {
     const finalDestName: string = transformWithAllowedCharacters(name);
     const finalAddress: string = transformWithAllowedCharacters(name);
 
+    const currentDayPlusOne: Date = new Date();
+    currentDayPlusOne.setDate(currentDayPlusOne.getDate() + 1);
+    currentDayPlusOne.setHours(0);
+    currentDayPlusOne.setMinutes(0);
+    currentDayPlusOne.setSeconds(0);
+
     const hasName: boolean =
       !!finalName && finalName.length > 6 && finalName.length < 200;
     const hasPhone: boolean = phone.length === 9 || phone.length === 13;
@@ -155,6 +161,9 @@ export default function Basket() {
       destPhone.length === 9 || destPhone.length === 13;
     const hasAddress: boolean =
       !!finalAddress && finalAddress.length > 10 && finalAddress.length < 200;
+    const hasDate: boolean = !!deliverDate && !!deliverDate.getTime();
+    const isDateGreaterThanCurrent: boolean =
+      hasDate && currentDayPlusOne.getTime() < deliverDate!.getTime();
 
     if (
       hasAddress &&
@@ -162,7 +171,9 @@ export default function Basket() {
       hasDestPhone &&
       hasNIF &&
       hasName &&
-      hasPhone
+      hasPhone &&
+      hasDate &&
+      isDateGreaterThanCurrent
     ) {
       setMessagesModal(<div>{confirmPurchaseMessage}</div>);
       setActionsModal(warningConfirmActions());
@@ -190,6 +201,14 @@ export default function Basket() {
         alertMessages.push(
           "Preencha um a morada do destinatário com caracteres válidos e com mais de 10 letras!"
         );
+      if (!hasDate) {
+        alertMessages.push("Deve selecionar uma data de entrega!");
+      } else {
+        !isDateGreaterThanCurrent &&
+          alertMessages.push(
+            "Deve selecionar uma data superior a currente data!"
+          );
+      }
 
       setMessagesModal(warningErrorMessages(alertMessages));
       setActionsModal(warningErrorActions());
@@ -316,30 +335,37 @@ export default function Basket() {
         />
       </div>
       <div className={styles.actions}>
-        <Button
-          extraClasses={`${styles["gift-btn"]} `}
-          onClick={() => {
-            setIsShowingGiftMessage(true);
-          }}
-        >
-          <GiPresent className={styles["gift-icon"]} />
-          Mensagem Presente
-        </Button>
-        <InfoCard
-          topics={[
-            {
-              title: `Total: ${data?.total || 0}€`,
-              paragraph: "",
-            },
-          ]}
-          extraClasses={styles.total}
-        />
-        <Button
-          extraClasses={styles["finish-btn"]}
-          onClick={() => makePurchase()}
-        >
-          Fazer Pedido
-        </Button>
+        {isInChangeDeliverDate ? (
+          <></>
+        ) : (
+          <>
+            <Button
+              extraClasses={`${styles["gift-btn"]} `}
+              onClick={() => {
+                setIsShowingGiftMessage(true);
+              }}
+            >
+              <GiPresent className={styles["gift-icon"]} />
+              Mensagem Presente
+            </Button>
+            <InfoCard
+              topics={[
+                {
+                  title: `Total: ${data?.total || 0}€`,
+                  paragraph: "",
+                },
+              ]}
+              extraClasses={styles.total}
+            />
+            <Button
+              extraClasses={styles["finish-btn"]}
+              onClick={() => makePurchase()}
+            >
+              Fazer Pedido
+            </Button>
+          </>
+        )}
+
         <div className={styles.date}>
           {isInChangeDeliverDate ? (
             <DayPicker
@@ -347,6 +373,7 @@ export default function Basket() {
               selected={deliverDate}
               onSelect={(date) => {
                 if (!!date) {
+                  date.setSeconds(date.getSeconds() + 1);
                   setDeliverDate(date);
                 }
                 setIsInChangeDeliverDate(false);
