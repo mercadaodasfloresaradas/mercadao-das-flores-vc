@@ -34,6 +34,7 @@ class SaleService {
     destName: string,
     destPhone: string,
     giftMessage: string,
+    deliverDate: number,
     products: IMinimalProduct[],
     hasToSave: boolean
   ): Promise<INewSaleResult> => {
@@ -45,6 +46,7 @@ class SaleService {
       destName,
       destPhone,
       giftMessage,
+      deliverDate,
       NIF,
       hasToSave,
     });

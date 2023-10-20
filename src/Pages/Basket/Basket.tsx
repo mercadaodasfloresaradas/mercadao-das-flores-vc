@@ -81,6 +81,7 @@ export default function Basket() {
         "*",
         "*",
         "*",
+        new Date().getTime(),
         productsStore.map((product) => ({
           category: product.category,
           id: product.id,
@@ -117,6 +118,7 @@ export default function Basket() {
         destName,
         destPhone,
         giftMessage || "",
+        deliverDate!.getTime(),
         productsStore.map((product) => ({
           category: product.category,
           id: product.id,
