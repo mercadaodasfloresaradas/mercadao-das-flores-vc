@@ -11,6 +11,10 @@ export interface IShowSaleResult {
     phone: string;
     address: string;
     NIF: string;
+    destName: string;
+    destPhone: string;
+    giftMessage: string;
+    deliverDate: number;
     id: string;
     priceTotal: number;
     date: Date;

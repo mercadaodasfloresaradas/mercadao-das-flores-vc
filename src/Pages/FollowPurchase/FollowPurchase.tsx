@@ -20,6 +20,7 @@ import Modal from "../../Components/Modal/Modal";
 import Button from "../../Components/Button/Button";
 
 import styles from "./FollowPurchase.module.scss";
+import FormatDate from "../../Components/FormatDate/FormatDate";
 
 const NewMessage = (props: {
   message: string;
@@ -180,6 +181,15 @@ export default function FollowPurchase() {
       });
   };
 
+  const detailsPurchase = `Conversa Automática - ${data?.details.date} - ${
+    data?.details.address
+  } - tml: ${data?.details.phone} - NIF: ${data?.details.NIF} - Destinatário: ${
+    data?.details.destName
+  } - tml: ${data?.details.destPhone} - Entrega: ${FormatDate({
+    date: new Date(data!.details.deliverDate),
+    isOnlyText: true,
+  })}`;
+
   return (
     <>
       <div className={styles.container}>
@@ -259,7 +269,7 @@ export default function FollowPurchase() {
               messages={[
                 {
                   user: EChatSender.Details,
-                  message: `Conversa Automática - ${data?.details.date} - ${data?.details.address} - tml: ${data?.details.phone} - NIF: ${data?.details.NIF}`,
+                  message: detailsPurchase,
                 },
                 ...(data?.conversations.messages.map((message) => ({
                   user:

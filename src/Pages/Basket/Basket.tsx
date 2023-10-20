@@ -15,6 +15,7 @@ import { useProductsStore } from "../../Store/Products.store";
 import { saleService } from "../../Services/Sale.service";
 import { INewSaleResult } from "../../Models/NewSaleResult";
 import Modal from "../../Components/Modal/Modal";
+import FormatDate from "../../Components/FormatDate/FormatDate";
 import { useSalesStore } from "../../Store/Sales.store";
 import { assertRouteKey } from "../../Assets/Constants/Routes";
 
@@ -58,15 +59,7 @@ export default function Basket() {
       }}
     >
       Data de Entrega
-      {deliverDate ? (
-        <p>
-          {`${deliverDate.getDate()}-${
-            deliverDate.getMonth() + 1
-          }-${deliverDate.getFullYear()}`}
-        </p>
-      ) : (
-        ""
-      )}
+      {deliverDate ? FormatDate({ date: deliverDate }) : ""}
     </Button>
   );
 
