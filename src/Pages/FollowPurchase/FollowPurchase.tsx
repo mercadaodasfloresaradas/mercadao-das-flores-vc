@@ -181,14 +181,17 @@ export default function FollowPurchase() {
       });
   };
 
-  const detailsPurchase = `Conversa Automática - ${data?.details.date} - ${
-    data?.details.address
-  } - tml: ${data?.details.phone} - NIF: ${data?.details.NIF} - Destinatário: ${
-    data?.details.destName
-  } - tml: ${data?.details.destPhone} - Entrega: ${FormatDate({
-    date: new Date(data!.details.deliverDate),
-    isOnlyText: true,
-  })}`;
+  const detailsPurchase = () =>
+    `Conversa Automática - ${data?.details.date} - ${
+      data?.details.address
+    } - tml: ${data?.details.phone} - NIF: ${
+      data?.details.NIF
+    } - Destinatário: ${data?.details.destName} - tml: ${
+      data?.details.destPhone
+    } - Entrega: ${FormatDate({
+      date: new Date(data?.details.deliverDate || 0),
+      isOnlyText: true,
+    })}`;
 
   return (
     <>
@@ -269,7 +272,7 @@ export default function FollowPurchase() {
               messages={[
                 {
                   user: EChatSender.Details,
-                  message: detailsPurchase,
+                  message: detailsPurchase(),
                 },
                 ...(data?.conversations.messages.map((message) => ({
                   user:
