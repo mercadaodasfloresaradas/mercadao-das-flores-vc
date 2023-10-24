@@ -6,7 +6,7 @@ import { IServiceRoutes } from "../Models/ServiceRoutes";
 import { network } from "./Network.service";
 class ConfigService {
   home(): Promise<string> {
-    return network.get(baseURL);
+    return network.get(baseURL, false);
   }
 
   private config(route: EConfigRoute): Promise<IConfigResult> {

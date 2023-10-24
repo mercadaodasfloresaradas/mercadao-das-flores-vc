@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { INewSaleResult } from "../Models/NewSaleResult";
 
 export interface LightboxState {
   productImg64: string | null;
