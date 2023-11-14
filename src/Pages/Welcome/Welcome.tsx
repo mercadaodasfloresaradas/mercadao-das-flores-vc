@@ -40,6 +40,7 @@ export default function Welcome() {
                 <Button
                   extraClasses={`${styles.action} ${styles.follow}`}
                   onClick={() => {
+                    navigate(`/${assertRouteKey("followPurchase")}`);
                     useServiceCheck();
                   }}
                 >
@@ -57,7 +58,7 @@ export default function Welcome() {
               <a
                 className={styles.link}
                 onClick={() => {
-                  navigate("/contacts");
+                  navigate(`/${assertRouteKey("contacts")}`);
                 }}
               >
                 <p className={styles.contacts}>Contactos</p>
