@@ -4,6 +4,7 @@ import "./App.scss";
 import { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Loading from "./Components/Loading/Loading";
+import CheckBrowser from "./Components/CheckBrowser/CheckBrowser";
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -13,12 +14,16 @@ const App = () => {
       },
     },
   });
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<Loading />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </QueryClientProvider>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </QueryClientProvider>
+      <CheckBrowser />
+    </>
   );
 };
 

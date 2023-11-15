@@ -8,9 +8,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { BsFillBasket2Fill } from "react-icons/bs";
 import Flowers from "../../Assets/Layout/Flowers";
+import { useProductsStore } from "../../Store/Products.store";
 
 import styles from "./Header.module.scss";
-import { useProductsStore } from "../../Store/Products.store";
 
 export default function Header() {
   const productCount = useProductsStore((state) => state.produts.length);
