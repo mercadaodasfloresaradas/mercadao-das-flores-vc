@@ -46,10 +46,19 @@ export default function Basket() {
     useState<boolean>(false);
 
   const navigate = useNavigate();
-  const confirmPurchaseMessage: string = `Tem a certeza que quer avançar com o pedido?
-
-  Anote o código na proxima página para poder acompanhar a sua encomenda.
-  O valor total é apenas para os produtos, a vendedora irá informar-lhe do valor do transporte.`;
+  const confirmPurchaseMessage: React.ReactNode = (
+    <>
+      Tem a certeza que quer avançar com o pedido?
+      <br />
+      <strong className={styles.strong}>Anote o código</strong> na proxima
+      página para poder acompanhar a sua encomenda. O valor total é apenas para
+      os produtos, a{" "}
+      <strong className={styles.strong}>
+        vendedora irá informar-lhe do valor do transporte
+      </strong>
+      .
+    </>
+  );
 
   let headerDeliverDate = (
     <Button
@@ -334,15 +343,6 @@ export default function Basket() {
           <></>
         ) : (
           <>
-            <Button
-              extraClasses={`${styles["gift-btn"]} `}
-              onClick={() => {
-                setIsShowingGiftMessage(true);
-              }}
-            >
-              <GiPresent className={styles["gift-icon"]} />
-              Mensagem Presente
-            </Button>
             <InfoCard
               topics={[
                 {
@@ -353,6 +353,32 @@ export default function Basket() {
               extraClasses={styles.total}
             />
             <Button
+              extraClasses={`${styles["gift-btn"]} `}
+              onClick={() => {
+                setIsShowingGiftMessage(true);
+              }}
+            >
+              <GiPresent className={styles["gift-icon"]} />
+              Mensagem Presente
+            </Button>
+            <div className={styles.date}>
+              {isInChangeDeliverDate ? (
+                <DayPicker
+                  mode="single"
+                  selected={deliverDate}
+                  onSelect={(date) => {
+                    if (!!date) {
+                      date.setSeconds(date.getSeconds() + 1);
+                      setDeliverDate(date);
+                    }
+                    setIsInChangeDeliverDate(false);
+                  }}
+                />
+              ) : (
+                headerDeliverDate
+              )}
+            </div>
+            <Button
               extraClasses={styles["finish-btn"]}
               onClick={() => makePurchase()}
             >
@@ -360,24 +386,6 @@ export default function Basket() {
             </Button>
           </>
         )}
-
-        <div className={styles.date}>
-          {isInChangeDeliverDate ? (
-            <DayPicker
-              mode="single"
-              selected={deliverDate}
-              onSelect={(date) => {
-                if (!!date) {
-                  date.setSeconds(date.getSeconds() + 1);
-                  setDeliverDate(date);
-                }
-                setIsInChangeDeliverDate(false);
-              }}
-            />
-          ) : (
-            headerDeliverDate
-          )}
-        </div>
       </div>
       <GiftMessageForm
         isShowing={isShowingGiftMessage}

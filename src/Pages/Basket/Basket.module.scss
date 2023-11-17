@@ -148,6 +148,7 @@
     .messages {
         font-size: 2.4rem;
         font-weight: 900;
+        padding: 1rem;
 
         @include devicesBreak(bigdesktop) {
             font-size: 2rem;
@@ -157,4 +158,9 @@
             font-size: 1.8rem;
         }
     }
+
+}
+
+.strong {
+    font-size: 3.5rem;
 }
