@@ -163,4 +163,13 @@
 
 .strong {
     font-size: 3.5rem;
+
+
+    @include devicesBreak(bigphone) {
+        font-size: 3rem;
+    }
+
+    @include devicesBreak(phone) {
+        font-size: 2.5rem;
+    }
 }

@@ -20,6 +20,7 @@ import { useSalesStore } from "../../Store/Sales.store";
 import { assertRouteKey } from "../../Assets/Constants/Routes";
 
 import styles from "./Basket.module.scss";
+import { AiTwotoneQuestionCircle } from "react-icons/ai";
 
 export default function Basket() {
   const [isShowingGiftMessage, setIsShowingGiftMessage] = useState(false);
@@ -60,7 +61,7 @@ export default function Basket() {
     </>
   );
 
-  let headerDeliverDate = (
+  let DeliverDateButton = () => (
     <Button
       extraClasses={styles["deliver-btn"]}
       onClick={() => {
@@ -340,7 +341,17 @@ export default function Basket() {
       </div>
       <div className={styles.actions}>
         {isInChangeDeliverDate ? (
-          <></>
+          <DayPicker
+            mode="single"
+            selected={deliverDate}
+            onSelect={(date) => {
+              if (!!date) {
+                date.setSeconds(date.getSeconds() + 1);
+                setDeliverDate(date);
+              }
+              setIsInChangeDeliverDate(false);
+            }}
+          />
         ) : (
           <>
             <InfoCard
@@ -362,21 +373,7 @@ export default function Basket() {
               Mensagem Presente
             </Button>
             <div className={styles.date}>
-              {isInChangeDeliverDate ? (
-                <DayPicker
-                  mode="single"
-                  selected={deliverDate}
-                  onSelect={(date) => {
-                    if (!!date) {
-                      date.setSeconds(date.getSeconds() + 1);
-                      setDeliverDate(date);
-                    }
-                    setIsInChangeDeliverDate(false);
-                  }}
-                />
-              ) : (
-                headerDeliverDate
-              )}
+              <DeliverDateButton />
             </div>
             <Button
               extraClasses={styles["finish-btn"]}
