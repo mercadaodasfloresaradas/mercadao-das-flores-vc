@@ -20,7 +20,6 @@ import { useSalesStore } from "../../Store/Sales.store";
 import { assertRouteKey } from "../../Assets/Constants/Routes";
 
 import styles from "./Basket.module.scss";
-import { AiTwotoneQuestionCircle } from "react-icons/ai";
 
 export default function Basket() {
   const [isShowingGiftMessage, setIsShowingGiftMessage] = useState(false);
@@ -151,8 +150,8 @@ export default function Basket() {
     }
 
     const finalName: string = transformWithAllowedCharacters(name);
-    const finalDestName: string = transformWithAllowedCharacters(name);
-    const finalAddress: string = transformWithAllowedCharacters(name);
+    const finalDestName: string = transformWithAllowedCharacters(destName);
+    const finalAddress: string = transformWithAllowedCharacters(address);
 
     const currentDayPlusOne: Date = new Date();
     currentDayPlusOne.setDate(currentDayPlusOne.getDate() + 1);
