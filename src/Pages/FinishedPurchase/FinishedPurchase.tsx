@@ -1,15 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
+import { IoCopyOutline } from "react-icons/io5";
 
 import InfoCard from "../../Components/InfoCard/InfoCard";
 import { EInfoCardParagraph } from "../../Enums/InfoCard";
 import { IConfigResult } from "../../Models/ConfigResult";
 import { configService } from "../../Services/Config.service";
 import { useSalesStore } from "../../Store/Sales.store";
+import Button from "../../Components/Button/Button";
+import { EButton } from "../../Enums/Button";
 
 import styles from "./FinishedPurchase.module.scss";
 
 export default function FinishedPurchase() {
   const lastSale = useSalesStore((state) => state.lastSale);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   const { data: warnings } = useQuery({
     queryKey: ["warnings"],
@@ -25,6 +30,14 @@ export default function FinishedPurchase() {
     },
   });
 
+  const copyID = () => {
+    const id: string = textRef.current?.innerText || "";
+
+    if (!!id) {
+      navigator.clipboard.writeText(id);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div>
@@ -32,7 +45,18 @@ export default function FinishedPurchase() {
           topics={[
             {
               title: "ID de Compra",
-              paragraph: lastSale?.id,
+              paragraph: (
+                <div className={styles["copy-id"]}>
+                  <span ref={textRef}>{lastSale?.id}</span>
+                  <Button
+                    onClick={copyID}
+                    type={EButton.transparentLeftSmall}
+                    extraClasses={styles["copy-id-btn"]}
+                  >
+                    <IoCopyOutline />
+                  </Button>
+                </div>
+              ),
               alignText: "center-text",
             },
             {

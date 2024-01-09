@@ -9,4 +9,16 @@
     @include devicesBreak(tablet) {
         margin: 0 1rem;
     }
+
+    .copy-id {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+
+        &-btn {
+            display: flex;
+            align-items: center;
+        }
+    }
 }
