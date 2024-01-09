@@ -17,7 +17,7 @@ export default function Contacts() {
       ) : (
         <div>
           {data?.config
-            .split("\n")
+            ?.split("\n")
             .reduce(
               (prev, current) => [...prev, ...current.split("\r")],
               [] as string[]
