@@ -35,6 +35,9 @@ export default function Basket() {
   const removeProduct = useProductsStore((state) => state.removeProduct);
   const emptyProducts = useProductsStore((state) => state.emptyProducts);
   const setLastSale = useSalesStore((state) => state.setLastSale);
+  const setLastSaleSearchID = useSalesStore(
+    (state) => state.setLastSaleSearchID
+  );
   const [giftMessage, setGiftMessage] = useState<string | null>(null);
   const [actionsModal, setActionsModal] = useState<React.ReactNode | null>(
     null
@@ -130,6 +133,7 @@ export default function Basket() {
       )
       .then((newSale) => {
         setLastSale(newSale);
+        setLastSaleSearchID(newSale.id);
         navigate(`/${assertRouteKey("finishedPurchase")}`);
         emptyProducts();
       });
