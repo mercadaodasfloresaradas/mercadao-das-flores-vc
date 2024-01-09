@@ -1,1 +1,15 @@
+:root {
+    color-scheme: light only !important;
+}
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light only !important;
+    }
+}
+
+@media (forced-colors: active) {
+    :root {
+        color-scheme: light only !important;
+    }
+}

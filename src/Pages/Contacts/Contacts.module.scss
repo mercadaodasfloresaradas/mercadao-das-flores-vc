@@ -12,6 +12,11 @@
 
     @include devicesBreak(bigdesktop) {
         flex-direction: column;
+        text-align: center;
+
+        .data {
+            font-size: 2rem;
+        }
     }
 }
 
