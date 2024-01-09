@@ -23,11 +23,15 @@ export default function Contacts() {
               [] as string[]
             )
             .map((element, index) => {
-              return (
-                <p className={styles.data} key={index}>
-                  {element}
-                </p>
-              );
+              const Container = (props: { children: string }) =>
+                element.includes("**++") ? (
+                  <strong className={styles["data-strong"]}>
+                    {props.children.replace("**++", "")}
+                  </strong>
+                ) : (
+                  <p className={styles.data}>{props.children}</p>
+                );
+              return <Container key={index}>{element}</Container>;
             })}
         </div>
       )}

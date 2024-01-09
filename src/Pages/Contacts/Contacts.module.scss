@@ -3,6 +3,12 @@
 .data {
     font-weight: 400;
     font-size: 3.2rem;
+
+    &-strong {
+        font-size: 3.2rem;
+        font-weight: bolder;
+        display: block;
+    }
 }
 
 .container {
@@ -16,6 +22,12 @@
 
         .data {
             font-size: 2rem;
+
+            &-strong {
+                font-size: 2rem;
+                font-weight: bolder;
+                display: block;
+            }
         }
     }
 }
