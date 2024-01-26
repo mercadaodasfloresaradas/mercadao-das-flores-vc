@@ -14,6 +14,7 @@ const App = () => {
       },
     },
   });
+  console.log("Production Build 1.0.0");
 
   return (
     <>
