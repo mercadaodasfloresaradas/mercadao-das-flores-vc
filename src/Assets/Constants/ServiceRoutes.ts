@@ -1,7 +1,6 @@
 import { IServiceRoutes } from "../../Models/ServiceRoutes";
 
-export const baseURL: string =
-  "https://redirect-without-cors-and50-mb.vercel.app"; //"https://redirect-without-cors-and50-mb.vercel.app" //"http://invius.ddns.net/vc";  //https://redirect-mercadaodasflores.vercel.app';
+export const baseURL: string = "https://redirect-mercadaodasflores.vercel.app"; //"https://redirect-without-cors-and50-mb.vercel.app" //"http://invius.ddns.net/vc";  //https://redirect-mercadaodasflores.vercel.app';
 
 export const serviceRoutes: IServiceRoutes = {
   productsByCategory: baseURL + "/products/bycategory",
