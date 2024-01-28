@@ -37,6 +37,7 @@
             @include devicesBreak(bigphone) {
                 font-size: 2.4rem;
                 flex-direction: column;
+                justify-content: center;
             }
         }
 
