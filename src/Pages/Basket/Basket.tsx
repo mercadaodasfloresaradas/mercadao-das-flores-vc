@@ -41,6 +41,7 @@ export default function Basket() {
   const [actionsModal, setActionsModal] = useState<React.ReactNode | null>(
     null
   );
+  const [isReadyToSell, setIsReadyToSell] = useState<boolean>(false);
   const [messagesModal, setMessagesModal] = useState<React.ReactNode | null>(
     null
   );
@@ -53,13 +54,12 @@ export default function Basket() {
     <>
       Tem a certeza que quer avançar com o pedido?
       <br />
-      <strong className={styles.strong}>Anote o código</strong> na proxima
-      página para poder acompanhar a sua encomenda. O valor total é apenas para
-      os produtos, a{" "}
       <strong className={styles.strong}>
-        vendedora irá informar-lhe do valor do transporte
+        A vendedora irá informar-lhe do valor do transporte.
       </strong>
-      .
+      <br />
+      até uma distancia de
+      <strong className={styles.strong}>10km.</strong>
     </>
   );
 
@@ -186,6 +186,7 @@ export default function Basket() {
       setMessagesModal(<div>{confirmPurchaseMessage}</div>);
       setActionsModal(warningConfirmActions());
       setIsShowingAlert(true);
+      setIsReadyToSell(true);
     } else {
       let alertMessages: string[] = [];
       !hasName &&
@@ -221,6 +222,7 @@ export default function Basket() {
       setMessagesModal(warningErrorMessages(alertMessages));
       setActionsModal(warningErrorActions());
       setIsShowingAlert(true);
+      setIsReadyToSell(false);
     }
   };
 
@@ -395,7 +397,9 @@ export default function Basket() {
 
       <Modal isShowing={isShowingAlert} setIsShowing={setIsShowingAlert}>
         <div className={styles.alert}>
-          <h2 className={styles["alert-title"]}>Aviso</h2>
+          <h2 className={styles["alert-title"]}>
+            {isReadyToSell ? "Transporte" : "Aviso"}
+          </h2>
           <div className={styles.messages}>{messagesModal}</div>
           <div className={styles.actions}>{actionsModal}</div>
         </div>
