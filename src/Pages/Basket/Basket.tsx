@@ -52,13 +52,14 @@ export default function Basket() {
   const navigate = useNavigate();
   const confirmPurchaseMessage: React.ReactNode = (
     <>
-      Tem a certeza que quer avançar com o pedido?
-      <br />
       <strong className={styles.strong}>
         A vendedora irá informar-lhe do valor do transporte.
       </strong>
       <br />
+      <strong className={styles.strong}>Entregas gratuitas </strong>
       até uma distancia de <strong className={styles.strong}>10km.</strong>
+      <br />
+      Tem a certeza que quer avançar com o pedido?
     </>
   );
 
