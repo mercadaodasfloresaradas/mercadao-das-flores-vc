@@ -58,8 +58,7 @@ export default function Basket() {
         A vendedora irá informar-lhe do valor do transporte.
       </strong>
       <br />
-      até uma distancia de
-      <strong className={styles.strong}>10km.</strong>
+      até uma distancia de <strong className={styles.strong}>10km.</strong>
     </>
   );
 
